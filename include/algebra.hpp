@@ -108,7 +108,7 @@ public:
     Type GetBCoeff(Type aCoeff) const{
         return ( p1->y - (aCoeff * (p1->x)) );
     }
-    std::shared_ptr<Point<Type>> GetIntersection(const Line<Type>& other) const{
+    LinkedPoint<Type> GetIntersectionLinked(const Line<Type>& other) const{
         Type a1 = GetACoeff();
         Type b1 = GetBCoeff(a1);
         Type a2 = other.GetACoeff();
@@ -116,7 +116,17 @@ public:
 
         Type x = ( (b2 - b1)/(a1 - a2) );
         Type y = ( a1 * x + b1 );
-        return std::make_shared<Point<Type>>(Point<Type>(x, y, 0));
+        return LinkedPoint<Type>(x, y, 0);
+    }
+    Point<Type> GetIntersection(const Line<Type>& other) const{
+        Type a1 = GetACoeff();
+        Type b1 = GetBCoeff(a1);
+        Type a2 = other.GetACoeff();
+        Type b2 = other.GetBCoeff(a2);
+
+        Type x = ( (b2 - b1)/(a1 - a2) );
+        Type y = ( a1 * x + b1 );
+        return Point<Type>(x, y, 0);
     }
 
     std::shared_ptr<Point<Type>> p1, p2;
