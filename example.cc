@@ -13,12 +13,11 @@ int main(){
 
     ALG::Triangle<float> tri(p1, p2, p3);
 
-    // If logger module included, swap ALG:: for LOG::
-    ALG::LogLn(p1);
-    ALG::LogLn(p2);
-    ALG::LogLn(p3);
-    ALG::Log("3-point angle: ");
-    ALG::LogLn(tri.GetAngle());
+    // If logger module included, use LOG:: instead
+    std::cout << p1 << std::endl;
+    std::cout << p2 << std::endl;
+    std::cout << p3 << std::endl;
+    std::cout << "3-point angle: " << tri.GetAngle() << std::endl;
 
     return 0;
 }

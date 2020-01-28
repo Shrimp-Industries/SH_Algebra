@@ -1,9 +1,6 @@
 #ifndef SH_ALGEBRA_HPP
 #define SH_ALGEBRA_HPP
 
-// Comment out to disable additional logging
-#define SH_ALGEBRA_LOGGING
-
 #include <vector>
 #include <math.h>
 #include <memory>
@@ -12,19 +9,6 @@
 
 namespace SH{
 namespace ALG{
-
-// If SH_LOGGER module not included, log to stdout -----------------------------
-#ifndef SH_LOGGER
-template <typename T>
-void Log(const T& entry){
-    std::cout << entry;
-}
-template <typename T>
-void LogLn(const T& entry){
-    std::cout << entry << std::endl;
-}
-#endif
-// -----------------------------------------------------------------------------
 
 // Points and linked points ----------------------------------------------------
 template <typename T>
