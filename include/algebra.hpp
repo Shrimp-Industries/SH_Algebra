@@ -11,7 +11,7 @@
 #include <sstream>
 
 namespace SH{
-
+namespace ALG{
 
 // If SH_LOGGER module not included, log to stdout -----------------------------
 #ifndef SH_LOGGER
@@ -26,8 +26,6 @@ void LogLn(const T& entry){
 #endif
 // -----------------------------------------------------------------------------
 
-
-namespace ALG{
 // Points and linked points ----------------------------------------------------
 template <typename T>
 struct Point{

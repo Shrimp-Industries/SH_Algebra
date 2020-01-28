@@ -13,11 +13,12 @@ int main(){
 
     ALG::Triangle<float> tri(p1, p2, p3);
 
-    LogLn(p1);
-    LogLn(p2);
-    LogLn(p3);
-    Log("3-point angle: ");
-    LogLn(tri.GetAngle());
+    // If logger module included, swap ALG:: for LOG::
+    ALG::LogLn(p1);
+    ALG::LogLn(p2);
+    ALG::LogLn(p3);
+    ALG::Log("3-point angle: ");
+    ALG::LogLn(tri.GetAngle());
 
     return 0;
 }
