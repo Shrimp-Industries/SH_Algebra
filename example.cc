@@ -19,5 +19,10 @@ int main(){
     std::cout << p3 << std::endl;
     std::cout << "3-point angle: " << tri.GetAngle() << std::endl;
 
+    ALG::Line<float> l1(p1, p2);
+    ALG::Line<float> l2(p2, p3);
+
+    std::cout << "Intersection: " << *(l1.GetIntersection(l2)) << std::endl;
+
     return 0;
 }

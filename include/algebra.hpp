@@ -56,11 +56,11 @@ public:
         p2(std::make_shared<LinkedPoint<Type>>(p2_)),
         p3(std::make_shared<LinkedPoint<Type>>(p3_))
     {};
-    float GetAngle(){
-        Type dx21 = (p2->x-p1->x);
-        Type dy21 = (p2->y-p1->y);
-        Type dx32 = (p3->x-p2->x);
-        Type dy32 = (p3->y-p2->y);
+    float GetAngle() const{
+        Type dx21 = (p2->x - p1->x);
+        Type dy21 = (p2->y - p1->y);
+        Type dx32 = (p3->x - p2->x);
+        Type dy32 = (p3->y - p2->y);
 
         Type dot = (dx21 * dx32 + dy21 * dy32);
 
@@ -77,6 +77,51 @@ public:
 // -----------------------------------------------------------------------------
 
 // Lines and contours ----------------------------------------------------------
+template <typename Type>
+struct Line{
+public:
+    Line(Point<Type> p1_, Point<Type> p2_)
+    :   p1(std::make_shared<Point<Type>>(p1_)),
+        p2(std::make_shared<Point<Type>>(p2_))
+    {};
+    Line(LinkedPoint<Type> p1_, LinkedPoint<Type> p2_)
+    :   p1(std::make_shared<LinkedPoint<Type>>(p1_)),
+        p2(std::make_shared<LinkedPoint<Type>>(p2_))
+    {};
+
+    Type GetXDiff() const{
+        return fabs(p2->x - p1->x);
+    }
+    Type GetYDiff() const{
+        return fabs(p2->y - p1->y);
+    }
+    Type GetDistance() const{
+        Type dx = GetXDiff();
+        Type dy = GetYDiff();
+        return sqrt(dx*dx + dy*dy);
+    }
+    // y = ax + b
+    Type GetACoeff() const{
+        return ( (p1->y - p2->y)/(p1->x - p2->x) );
+    }
+    // y = ax + b
+    Type GetBCoeff(Type aCoeff) const{
+        return ( p1->y - (aCoeff * (p1->x)) );
+    }
+    std::shared_ptr<Point<Type>> GetIntersection(const Line<Type>& other) const{
+        Type a1 = GetACoeff();
+        Type b1 = GetBCoeff(a1);
+        Type a2 = other.GetACoeff();
+        Type b2 = other.GetBCoeff(a2);
+
+        Type x = ( (b2 - b1)/(a1 - a2) );
+        Type y = ( a1 * x + b1 );
+        return std::make_shared<Point<Type>>(Point<Type>(x, y, 0));
+    }
+
+    std::shared_ptr<Point<Type>> p1, p2;
+};
+
 template <typename T>
 using Contour = std::vector<LinkedPoint<T>>;
 // -----------------------------------------------------------------------------
