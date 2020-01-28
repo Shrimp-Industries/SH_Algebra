@@ -1,6 +1,9 @@
 # Algebra module
+
 **SH_Algebra** module for **SHCPP** (Shrimp's C++ Framework)
+
 **Version:** 1.0.0
+
 **Dependencies:** none
 
 
